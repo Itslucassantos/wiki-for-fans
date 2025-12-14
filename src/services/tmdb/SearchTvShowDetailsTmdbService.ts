@@ -5,6 +5,7 @@ import { ImageUrlBuilder } from "../../utils/ImageUrlBuilder";
 interface TvShowResult {
   id: number;
   name: string;
+  original_name: string;
   overview: string;
   poster_path: string | null;
   backdrop_path: string | null;
@@ -30,6 +31,7 @@ class SearchTvShowDetailsTmdbService {
     return {
       id: tv.id,
       name: tv.name,
+      originalName: tv.original_name,
       overview: tv.overview,
       posterImage: ImageUrlBuilder.build(tv.poster_path) ?? null,
       backdropImage: ImageUrlBuilder.build(tv.backdrop_path) ?? null,

@@ -4,12 +4,14 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model TvShow {
   id                 Int          @id 
   name               String
   overview           String
+  originalName       String?      @map("original_name")
   posterImage        String?      @map("poster_image")
   backdropImage      String?      @map("backdrop_image")
   firstAirDate       String       @map("first_air_date")

@@ -6,6 +6,7 @@ class SaveMovieService {
     const savedMovie = await prismaClient.movie.create({
       data: {
         ...movieReq,
+        title: movieReq.title.toLowerCase(),
       },
     });
 

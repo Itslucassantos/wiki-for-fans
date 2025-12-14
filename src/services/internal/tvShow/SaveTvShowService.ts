@@ -3,6 +3,7 @@ import prismaClient from "../../../prisma";
 interface TvShowReq {
   id: number;
   name: string;
+  originalName: string;
   overview: string;
   posterImage: string | null;
   backdropImage: string | null;
@@ -20,6 +21,7 @@ class SaveTvShowService {
     const tvShowSaved = await prismaClient.tvShow.create({
       data: {
         ...tvShowReq,
+        name: tvShowReq.name.toLowerCase(),
       },
     });
 

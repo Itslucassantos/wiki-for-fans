@@ -3,6 +3,7 @@ import { CharacterProps } from "./character.types";
 export interface TvShowProps {
   id: number;
   name: string;
+  originalName: string;
   overview: string;
   posterImage?: string | null;
   backdropImage?: string | null;

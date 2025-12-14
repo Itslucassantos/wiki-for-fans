@@ -3,7 +3,8 @@ import { TvShowService } from "../../services/tvshow/TvShowService";
 
 class TvShowController {
   async handle(req: Request, res: Response) {
-    const { name } = req.body;
+    const nameReq = req.body.nameReq as string;
+    const name = nameReq.toLowerCase();
 
     const tvShowService = new TvShowService();
 

@@ -3,7 +3,9 @@ import { MovieService } from "../../services/movie/MovieService";
 
 class MovieController {
   async handle(req: Request, res: Response) {
-    const { name } = req.body;
+    const nameReq = req.body.nameReq as string;
+
+    const name = nameReq.toLowerCase();
 
     const movieService = new MovieService();
 
