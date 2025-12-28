@@ -1,6 +1,6 @@
 import prismaClient from "../../../prisma";
 
-interface TvShowReq {
+export interface TvShowReq {
   id: number;
   name: string;
   originalName: string;
