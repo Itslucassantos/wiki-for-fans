@@ -14,6 +14,9 @@ const prismaClient = {
     delete: jest.fn(),
     update: jest.fn(),
     create: jest.fn(),
+    findMany: jest.fn(),
+    findUnique: jest.fn(),
+    findFirst: jest.fn(),
   },
 };
 
