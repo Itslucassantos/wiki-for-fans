@@ -39,9 +39,7 @@ describe("CharacterDetailsTmdbService", () => {
       data: tmdbResponse,
     });
 
-    (ImageUrlBuilder.build as jest.Mock).mockReturnValue(
-      "https://image.tmdb.org/t/p/bryan.jpg"
-    );
+    (ImageUrlBuilder.build as jest.Mock).mockReturnValue("https://image.tmdb.org/t/p/bryan.jpg");
 
     const service = new CharacterDetailsTmdbService();
 
@@ -112,9 +110,7 @@ describe("CharacterDetailsTmdbService", () => {
 
     const service = new CharacterDetailsTmdbService();
 
-    await expect(service.execute({ id: 1, character: "Test" })).rejects.toThrow(
-      "TMDB error"
-    );
+    await expect(service.execute({ id: 1, character: "Test" })).rejects.toThrow("TMDB error");
   });
 
   it("calculates age correctly when actor is deceased and maps gender variants", async () => {

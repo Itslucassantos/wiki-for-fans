@@ -23,9 +23,7 @@ describe("SaveCharacterService", () => {
       tvShowId: null,
     };
 
-    (prismaClient.character.create as jest.Mock).mockResolvedValue(
-      savedCharacter
-    );
+    (prismaClient.character.create as jest.Mock).mockResolvedValue(savedCharacter);
 
     const service = new SaveCharacterService();
     const result = await service.execute(characterReq, undefined, 1);
@@ -55,9 +53,7 @@ describe("SaveCharacterService", () => {
       tvShowId: 1,
     };
 
-    (prismaClient.character.create as jest.Mock).mockResolvedValue(
-      savedCharacter
-    );
+    (prismaClient.character.create as jest.Mock).mockResolvedValue(savedCharacter);
 
     const service = new SaveCharacterService();
     const result = await service.execute(characterReq, 1, undefined);

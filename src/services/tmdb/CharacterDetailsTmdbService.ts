@@ -26,12 +26,9 @@ class CharacterDetailsTmdbService {
   private readonly tmdbApiKey = process.env.TMDB_API_KEY;
 
   async execute(character: CharacterReq) {
-    const searchForActor = await api.get<CharacterDetails>(
-      `/person/${character.id}`,
-      {
-        params: { api_key: this.tmdbApiKey, language: "en-US" },
-      }
-    );
+    const searchForActor = await api.get<CharacterDetails>(`/person/${character.id}`, {
+      params: { api_key: this.tmdbApiKey, language: "en-US" },
+    });
 
     const actorDetails = searchForActor.data;
 
@@ -43,10 +40,7 @@ class CharacterDetailsTmdbService {
       actorBiography: actorDetails.biography || "",
       actorBirthday: actorDetails.birthday,
       actorDeathday: actorDetails.deathday,
-      actorAge: this.calculateActorAge(
-        actorDetails.birthday,
-        actorDetails.deathday
-      ),
+      actorAge: this.calculateActorAge(actorDetails.birthday, actorDetails.deathday),
       actorPlaceOfBirth: actorDetails.place_of_birth,
       actorProfileImage: ImageUrlBuilder.build(actorDetails.profile_path),
       actorPopularity: actorDetails.popularity,
@@ -58,30 +52,18 @@ class CharacterDetailsTmdbService {
     };
   }
 
-  private calculateActorAge(
-    birthday: string | null,
-    deathday: string | null
-  ): number | null {
+  private calculateActorAge(birthday: string | null, deathday: string | null): number | null {
     if (!birthday) return null;
     const birthDate = new Date(birthday);
     const endDate = deathday ? new Date(deathday) : new Date();
     let age = endDate.getFullYear() - birthDate.getFullYear();
     const monthDiff = endDate.getMonth() - birthDate.getMonth();
-    if (
-      monthDiff < 0 ||
-      (monthDiff === 0 && endDate.getDate() < birthDate.getDate())
-    )
-      age--;
+    if (monthDiff < 0 || (monthDiff === 0 && endDate.getDate() < birthDate.getDate())) age--;
     return age;
   }
 
-  private mapGender(
-    genderCode: number
-  ): "Unknown" | "Female" | "Male" | "Non-binary" {
-    const genderMap: Record<
-      number,
-      "Unknown" | "Female" | "Male" | "Non-binary"
-    > = {
+  private mapGender(genderCode: number): "Unknown" | "Female" | "Male" | "Non-binary" {
+    const genderMap: Record<number, "Unknown" | "Female" | "Male" | "Non-binary"> = {
       0: "Unknown",
       1: "Female",
       2: "Male",

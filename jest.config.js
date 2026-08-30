@@ -4,6 +4,7 @@ module.exports = {
   clearMocks: true,
   testMatch: ["**/*.spec.ts"],
   collectCoverage: true,
+  testPathIgnorePatterns: ["dist/"],
   collectCoverageFrom: [
     "src/**/*.{ts,tsx,js,jsx}",
 

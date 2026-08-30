@@ -11,13 +11,10 @@ import { NameMovieOrTvShow } from "../../types/tvShowAndMovie.types";
 
 class TvShowService {
   private readonly searchTvShowService = new SearchTvShowService();
-  private readonly searchCharactersTmdbService =
-    new SearchCharactersTmdbService();
+  private readonly searchCharactersTmdbService = new SearchCharactersTmdbService();
   private readonly searchTvShowTmdbService = new SearchTvShowTmdbService();
-  private readonly searchTvShowDetailsTmdbService =
-    new SearchTvShowDetailsTmdbService();
-  private readonly characterDetailsTmdbService =
-    new CharacterDetailsTmdbService();
+  private readonly searchTvShowDetailsTmdbService = new SearchTvShowDetailsTmdbService();
+  private readonly characterDetailsTmdbService = new CharacterDetailsTmdbService();
   private saveTvShowService = new SaveTvShowService();
   private saveCharacterService = new SaveCharacterService();
 
@@ -25,11 +22,9 @@ class TvShowService {
     try {
       const { name } = request;
 
-      const tvShowResponseOfInternalDb = await this.searchTvShowService.execute(
-        {
-          name,
-        }
-      );
+      const tvShowResponseOfInternalDb = await this.searchTvShowService.execute({
+        name,
+      });
 
       if (tvShowResponseOfInternalDb) {
         return tvShowResponseOfInternalDb;
@@ -55,14 +50,9 @@ class TvShowService {
       const detailedCharacters: CharacterProps[] = [];
 
       for (const c of characters) {
-        const characterDetails = await this.characterDetailsTmdbService.execute(
-          c
-        );
+        const characterDetails = await this.characterDetailsTmdbService.execute(c);
 
-        await this.saveCharacterService.execute(
-          characterDetails,
-          savedTvShow.id
-        );
+        await this.saveCharacterService.execute(characterDetails, savedTvShow.id);
 
         detailedCharacters.push(characterDetails);
       }

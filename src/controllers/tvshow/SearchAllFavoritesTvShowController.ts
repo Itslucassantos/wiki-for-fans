@@ -3,8 +3,7 @@ import { SearchAllFavoriteTvShowsService } from "../../services/internal/tvShow/
 
 class SearchAllFavoritesTvShowController {
   async handle(_: Request, res: Response) {
-    const searchAllFavoriteTvShowsService =
-      new SearchAllFavoriteTvShowsService();
+    const searchAllFavoriteTvShowsService = new SearchAllFavoriteTvShowsService();
     const tvShows = await searchAllFavoriteTvShowsService.execute();
 
     return res.json(tvShows);

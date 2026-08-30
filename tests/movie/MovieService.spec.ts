@@ -16,32 +16,25 @@ import { SearchMovieDetailsTmdbService } from "../../src/services/tmdb/SearchMov
 import { SearchMovieTmdbService } from "../../src/services/tmdb/SearchMovieTmdbService";
 import { MovieProps } from "../../src/types/movie.types";
 
-const mockSearchMovieService = SearchMovieService as jest.MockedClass<
-  typeof SearchMovieService
->;
+const mockSearchMovieService = SearchMovieService as jest.MockedClass<typeof SearchMovieService>;
 
 const mockSearchMovieTmdbService = SearchMovieTmdbService as jest.MockedClass<
   typeof SearchMovieTmdbService
 >;
 
-const mockSearchMovieDetailsTmdbService =
-  SearchMovieDetailsTmdbService as jest.MockedClass<
-    typeof SearchMovieDetailsTmdbService
-  >;
-
-const mockSearchCharactersTmdbService =
-  SearchCharactersTmdbService as jest.MockedClass<
-    typeof SearchCharactersTmdbService
-  >;
-
-const mockCharacterDetailsTmdbService =
-  CharacterDetailsTmdbService as jest.MockedClass<
-    typeof CharacterDetailsTmdbService
-  >;
-
-const mockSaveMovieService = SaveMovieService as jest.MockedClass<
-  typeof SaveMovieService
+const mockSearchMovieDetailsTmdbService = SearchMovieDetailsTmdbService as jest.MockedClass<
+  typeof SearchMovieDetailsTmdbService
 >;
+
+const mockSearchCharactersTmdbService = SearchCharactersTmdbService as jest.MockedClass<
+  typeof SearchCharactersTmdbService
+>;
+
+const mockCharacterDetailsTmdbService = CharacterDetailsTmdbService as jest.MockedClass<
+  typeof CharacterDetailsTmdbService
+>;
+
+const mockSaveMovieService = SaveMovieService as jest.MockedClass<typeof SaveMovieService>;
 
 const mockSaveCharacterService = SaveCharacterService as jest.MockedClass<
   typeof SaveCharacterService
@@ -77,10 +70,7 @@ describe("MovieService", () => {
       title: "Interstellar",
     } as MovieProps);
 
-    mockSearchCharactersTmdbService.prototype.execute.mockResolvedValue([
-      { id: 1 },
-      { id: 2 },
-    ]);
+    mockSearchCharactersTmdbService.prototype.execute.mockResolvedValue([{ id: 1 }, { id: 2 }]);
 
     mockCharacterDetailsTmdbService.prototype.execute
       .mockResolvedValueOnce({ id: 1, name: "Cooper" } as any)
@@ -113,19 +103,17 @@ describe("MovieService", () => {
     const service = new MovieService();
 
     await expect(service.execute({ name: "Unknown Movie" })).rejects.toThrow(
-      'Failed to fetch movie: Movie "Unknown Movie" not found on TMDB'
+      'Failed to fetch movie: Movie "Unknown Movie" not found on TMDB',
     );
   });
 
   it("throws wrapped error if any dependency fails", async () => {
-    mockSearchMovieService.prototype.execute.mockRejectedValue(
-      new Error("DB down")
-    );
+    mockSearchMovieService.prototype.execute.mockRejectedValue(new Error("DB down"));
 
     const service = new MovieService();
 
     await expect(service.execute({ name: "Any Movie" })).rejects.toThrow(
-      "Failed to fetch movie: DB down"
+      "Failed to fetch movie: DB down",
     );
   });
 });

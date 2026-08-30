@@ -42,9 +42,8 @@ describe("SearchTvShowDetailsTmdbService", () => {
       data: tmdbResponse,
     });
 
-    (ImageUrlBuilder.build as jest.Mock).mockImplementation(
-      (path: string | null) =>
-        path ? `https://image.tmdb.org/t/p${path}` : null
+    (ImageUrlBuilder.build as jest.Mock).mockImplementation((path: string | null) =>
+      path ? `https://image.tmdb.org/t/p${path}` : null,
     );
 
     const service = new SearchTvShowDetailsTmdbService();

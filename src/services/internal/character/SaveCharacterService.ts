@@ -2,11 +2,7 @@ import prismaClient from "../../../prisma";
 import { CharacterProps } from "../../../types/character.types";
 
 class SaveCharacterService {
-  async execute(
-    characterReq: CharacterProps,
-    tvShowId?: number,
-    movieId?: number
-  ) {
+  async execute(characterReq: CharacterProps, tvShowId?: number, movieId?: number) {
     const characterRes = await prismaClient.character.create({
       data: {
         ...characterReq,

@@ -15,32 +15,25 @@ import { SearchTvShowDetailsTmdbService } from "../../src/services/tmdb/SearchTv
 import { SearchTvShowTmdbService } from "../../src/services/tmdb/SearchTvShowTmdbService";
 import { TvShowService } from "../../src/services/tvshow/TvShowService";
 
-const mockSearchTvShowService = SearchTvShowService as jest.MockedClass<
-  typeof SearchTvShowService
->;
+const mockSearchTvShowService = SearchTvShowService as jest.MockedClass<typeof SearchTvShowService>;
 
 const mockSearchTvShowTmdbService = SearchTvShowTmdbService as jest.MockedClass<
   typeof SearchTvShowTmdbService
 >;
 
-const mockSearchTvShowDetailsTmdbService =
-  SearchTvShowDetailsTmdbService as jest.MockedClass<
-    typeof SearchTvShowDetailsTmdbService
-  >;
-
-const mockSearchCharactersTmdbService =
-  SearchCharactersTmdbService as jest.MockedClass<
-    typeof SearchCharactersTmdbService
-  >;
-
-const mockCharacterDetailsTmdbService =
-  CharacterDetailsTmdbService as jest.MockedClass<
-    typeof CharacterDetailsTmdbService
-  >;
-
-const mockSaveTvShowService = SaveTvShowService as jest.MockedClass<
-  typeof SaveTvShowService
+const mockSearchTvShowDetailsTmdbService = SearchTvShowDetailsTmdbService as jest.MockedClass<
+  typeof SearchTvShowDetailsTmdbService
 >;
+
+const mockSearchCharactersTmdbService = SearchCharactersTmdbService as jest.MockedClass<
+  typeof SearchCharactersTmdbService
+>;
+
+const mockCharacterDetailsTmdbService = CharacterDetailsTmdbService as jest.MockedClass<
+  typeof CharacterDetailsTmdbService
+>;
+
+const mockSaveTvShowService = SaveTvShowService as jest.MockedClass<typeof SaveTvShowService>;
 
 const mockSaveCharacterService = SaveCharacterService as jest.MockedClass<
   typeof SaveCharacterService
@@ -60,9 +53,7 @@ describe("TvShowService", () => {
     const result = await service.execute({ name: "Breaking Bad" });
 
     expect(result).toEqual(tvShowFromDb);
-    expect(
-      mockSearchTvShowTmdbService.prototype.execute
-    ).not.toHaveBeenCalled();
+    expect(mockSearchTvShowTmdbService.prototype.execute).not.toHaveBeenCalled();
   });
 
   it("fetches TV show from TMDB, saves TV show and characters, and returns full response", async () => {
@@ -78,10 +69,7 @@ describe("TvShowService", () => {
       name: "Breaking Bad",
     } as any);
 
-    mockSearchCharactersTmdbService.prototype.execute.mockResolvedValue([
-      { id: 1 },
-      { id: 2 },
-    ]);
+    mockSearchCharactersTmdbService.prototype.execute.mockResolvedValue([{ id: 1 }, { id: 2 }]);
 
     mockCharacterDetailsTmdbService.prototype.execute
       .mockResolvedValueOnce({ id: 1, name: "Walter White" } as any)
@@ -116,19 +104,17 @@ describe("TvShowService", () => {
     const service = new TvShowService();
 
     await expect(service.execute({ name: "Unknown Show" })).rejects.toThrow(
-      'Failed to fetch TV show: TV show "Unknown Show" not found on TMDB'
+      'Failed to fetch TV show: TV show "Unknown Show" not found on TMDB',
     );
   });
 
   it("throws wrapped error if any dependency fails", async () => {
-    mockSearchTvShowService.prototype.execute.mockRejectedValue(
-      new Error("DB error")
-    );
+    mockSearchTvShowService.prototype.execute.mockRejectedValue(new Error("DB error"));
 
     const service = new TvShowService();
 
     await expect(service.execute({ name: "Any Show" })).rejects.toThrow(
-      "Failed to fetch TV show: DB error"
+      "Failed to fetch TV show: DB error",
     );
   });
 });

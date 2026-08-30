@@ -48,9 +48,7 @@ describe("SearchMovieDetailsTmdbService", () => {
           origin_country: "US",
         },
       ],
-      production_countries: [
-        { iso_3166_1: "US", name: "United States of America" },
-      ],
+      production_countries: [{ iso_3166_1: "US", name: "United States of America" }],
       spoken_languages: [
         {
           english_name: "English",
@@ -62,9 +60,8 @@ describe("SearchMovieDetailsTmdbService", () => {
 
     (api.get as jest.Mock).mockResolvedValue({ data: tmdbResponse });
 
-    (ImageUrlBuilder.build as jest.Mock).mockImplementation(
-      (path: string | null) =>
-        path ? `https://image.tmdb.org/t/p${path}` : null
+    (ImageUrlBuilder.build as jest.Mock).mockImplementation((path: string | null) =>
+      path ? `https://image.tmdb.org/t/p${path}` : null,
     );
 
     const service = new SearchMovieDetailsTmdbService();

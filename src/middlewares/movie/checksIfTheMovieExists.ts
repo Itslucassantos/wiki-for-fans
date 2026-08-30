@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import prismaClient from "../../prisma";
 import { SearchMovieByIdService } from "../../services/internal/movie/SearchMovieByIdService";
 
-export async function checksIfTheMovieExists(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
+export async function checksIfTheMovieExists(req: Request, res: Response, next: NextFunction) {
   const id = Number(req.query.id || req.body.id);
 
   const searchMovieByIdService = new SearchMovieByIdService();

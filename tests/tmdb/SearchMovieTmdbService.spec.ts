@@ -55,8 +55,6 @@ describe("SearchMovieTmdbService", () => {
 
     const service = new SearchMovieTmdbService();
 
-    await expect(service.execute({ name: "Any Movie" })).rejects.toThrow(
-      "TMDB error"
-    );
+    await expect(service.execute({ name: "Any Movie" })).rejects.toThrow("TMDB error");
   });
 });

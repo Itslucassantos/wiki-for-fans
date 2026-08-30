@@ -60,8 +60,6 @@ describe("SearchTvShowTmdbService", () => {
 
     const service = new SearchTvShowTmdbService();
 
-    await expect(service.execute({ name: "Breaking Bad" })).rejects.toThrow(
-      "TMDB error"
-    );
+    await expect(service.execute({ name: "Breaking Bad" })).rejects.toThrow("TMDB error");
   });
 });

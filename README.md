@@ -22,7 +22,7 @@
 
 <details open="open">
 <summary>Table of Contents</summary>
-  
+
 - [🚀 Getting started](#started)
   - [Prerequisites](#prerequisites)
   - [Cloning](#cloning)
@@ -30,7 +30,7 @@
   - [Starting](#starting)
 - [📍 API Endpoints](#routes)
 - [🤝 Collaborators](#colab)
-  
+
 </details>
 
 <p align="center">

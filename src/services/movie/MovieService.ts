@@ -11,12 +11,9 @@ import { SearchMovieTmdbService } from "../tmdb/SearchMovieTmdbService";
 
 class MovieService {
   private readonly searchMovieTmdbService = new SearchMovieTmdbService();
-  private readonly searchMovieDetailsTmdbService =
-    new SearchMovieDetailsTmdbService();
-  private readonly searchCharactersTmdbService =
-    new SearchCharactersTmdbService();
-  private readonly characterDetailsTmdbService =
-    new CharacterDetailsTmdbService();
+  private readonly searchMovieDetailsTmdbService = new SearchMovieDetailsTmdbService();
+  private readonly searchCharactersTmdbService = new SearchCharactersTmdbService();
+  private readonly characterDetailsTmdbService = new CharacterDetailsTmdbService();
   private readonly saveMovieService = new SaveMovieService();
   private readonly saveCharacterService = new SaveCharacterService();
   private readonly searchMovieService = new SearchMovieService();
@@ -53,15 +50,9 @@ class MovieService {
       const detailedCharacters: CharacterProps[] = [];
 
       for (const c of characters) {
-        const characterDetails = await this.characterDetailsTmdbService.execute(
-          c
-        );
+        const characterDetails = await this.characterDetailsTmdbService.execute(c);
 
-        await this.saveCharacterService.execute(
-          characterDetails,
-          null,
-          savedMovie.id
-        );
+        await this.saveCharacterService.execute(characterDetails, null, savedMovie.id);
 
         detailedCharacters.push(characterDetails);
       }
