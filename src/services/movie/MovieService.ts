@@ -61,8 +61,13 @@ class MovieService {
         ...movieDetails,
         characters: detailedCharacters,
       };
-    } catch (error: any) {
-      throw new Error("Failed to fetch movie: " + error.message);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      const err = new Error("Failed to fetch movie: " + message);
+      if (error instanceof Error) {
+        Object.assign(err, { cause: error });
+      }
+      throw err;
     }
   }
 }

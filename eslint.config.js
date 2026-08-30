@@ -37,5 +37,14 @@ module.exports = [
     languageOptions: {
       globals: globals.jest,
     },
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+  {
+    files: ["tests/**/*.js", "**/*.spec.js"],
+    languageOptions: {
+      globals: globals.jest,
+    },
   },
 ];
